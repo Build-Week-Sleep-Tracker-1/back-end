@@ -21,14 +21,6 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
-    try {
-
-
-    } catch(err) {
-        next(err)
-    }
-})
 
 router.put('/:id', async (req, res, next) => {
     try {
@@ -41,7 +33,14 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
-
+        const user = await usersModel.findById(req.params.id)
+        if(!user) {
+            return res.status(400).json({
+                message: 'user not found'
+            })
+        }
+        await usersModel.remove(req.params.id)
+        res.status(204).end()
 
     } catch(err) {
         next(err)
@@ -66,7 +65,7 @@ router.post('/:id/entries', async (req, res, next) => {
     }
 })
 
-router.put('/:id/entries', async (req, res, next) => {
+router.put('/:id/entries/:id', async (req, res, next) => {
     try {
 
 
@@ -75,7 +74,7 @@ router.put('/:id/entries', async (req, res, next) => {
     }
 })
 
-router.delete('/:id/entries', async (req, res, next) => {
+router.delete('/:id/entries/:id', async (req, res, next) => {
     try {
 
 
