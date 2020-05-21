@@ -53,7 +53,7 @@ ________
     - *PROTECTED*
     - Returns the updated entry.
     
-  - ### **PUT** `/users/:id/entries/:entryid`
+  - ### **Delete** `/users/:id/entries/:entryid`
     - *PROTECTED*
     - Deletes entry.
     - No response body.
