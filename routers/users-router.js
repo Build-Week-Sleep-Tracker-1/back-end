@@ -64,6 +64,16 @@ router.get('/:id/entries', authenticate(), async (req, res, next) => {
     }
 })
 
+router.get('/:id/entries/:entryid', authenticate(), async (req, res, next) => {
+    try {
+        const entrie = await entriesModel.findById(req.params.entryid)
+        res.json(entrie)
+
+    } catch(err) {
+        next(err)
+    }
+})
+
 router.post('/:id/entries', authenticate(), async (req, res, next) => {
     try {
         const entryToAdd = {
