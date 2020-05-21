@@ -13,8 +13,12 @@ function findById(id) {
     return db('entries').where({id}).first()
 }
 
+function findByUserId(id) {
+    return db('entries').where('user_id', id)
+}
+
 async function add(entry) {
-    cosnt [id] = await db('entries').insert(entry)
+    const [id] = await db('entries').insert(entry)
     return findById(id)
 }
 
@@ -31,6 +35,7 @@ module.exports = {
     find,
     findBy,
     findById,
+    findByUserId,
     update,
     add,
     remove,
