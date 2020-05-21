@@ -21,6 +21,43 @@ ________
   
   - ### **GET** `/users/:id`
     - Returns the user with the specified id.
+    
+  - ### **PUT** `/users/:id`
+    - *PROTECTED*
+    - Returns the updated user.
+    
+  - ### **DELETE** `/users/:id`
+    - *PROTECTED*
+    - Deletes user.
+    - No response body.
+    
+--------
+________
+
+> ## User Entries
+
+  - ### **GET** `/users/:id/entries`
+    - *PROTECTED*
+    - Returns an array of all entries belonging to specified user.
+    
+  - ### **GET** `/users/:id/entries/:entryid`
+    - *PROTECTED*
+    - Returns the entry with the specifed id.
+    
+  - ### **POST** `/users/:id/entries`
+    - *PROTECTED*
+    - Your request body must include date, sleep_start, sleep_end, total_time, and mood_score.
+    - Returns added entry.
+    
+  - ### **PUT** 'users/:id/entries/:entryid'
+    - *PROTECTED*
+    - Returns the updated entry.
+    
+  - ### **PUT** `/users/:id/entries/:entryid`
+    - *PROTECTED*
+    - Deletes entry.
+    - No response body.
+
 
 
 
