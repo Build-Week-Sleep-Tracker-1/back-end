@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser')
 const authRouter = require('./routers/auth-router')
 const usersRouter = require('./routers/users-router')
 const server = express()
-const port = 6000
+const port = process.env.PORT || 6000
 
 server.use(express.json())
 server.use(cookieParser())
