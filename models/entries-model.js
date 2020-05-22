@@ -1,5 +1,4 @@
 const db = require('../data/config')
-const bcrypt = require('bcryptjs')
 
 function find() {
     return db('entries')
