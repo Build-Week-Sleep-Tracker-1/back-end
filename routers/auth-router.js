@@ -27,9 +27,6 @@ router.post('/register', validBody(), async (req, res, next) => {
 
 
     } catch(err) {
-        res.json({
-            error: err
-        })
         next(err)
     }
 })
