@@ -15,7 +15,14 @@ router.post('/register', validBody(), async (req, res, next) => {
             })
         }
 
-        const newUser = await db.add(credentials)
+        const formatUser = {
+            username: credentials.username,
+            password: credentials.password,
+            name: credentials.name,
+            age: credentials.age
+        }
+
+        const newUser = await db.add(formatUser)
         res.status(201).json(newUser)
 
 
