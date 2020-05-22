@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
+const helmet = require('helmet')
 const cookieParser = require('cookie-parser')
 const authRouter = require('./routers/auth-router')
 const usersRouter = require('./routers/users-router')
@@ -8,6 +9,7 @@ const server = express()
 const port = process.env.PORT || 6000
 
 server.use(express.json())
+server.use(helmet())
 server.use(cors())
 server.use(cookieParser())
 server.use('/api/auth', authRouter)
