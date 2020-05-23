@@ -1,14 +1,15 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const db = require('../models/users-model')
+const usersModel = require('../models/users-model')
+const entriesModel = require('../models/entries-model')
 const router = express.Router()
 
 router.post('/register', validBody(), async (req, res, next) => {
     try {
         const credentials = req.body
 
-        const userExists = await db.findBy({ username: credentials.username})
+        const userExists = await usersModel.findBy({ username: credentials.username})
         if(userExists) {
             return res.status(400).json({
                 message: 'that username already exists'
@@ -22,7 +23,7 @@ router.post('/register', validBody(), async (req, res, next) => {
             age: credentials.age
         }
 
-        const newUser = await db.add(formatUser)
+        const newUser = await usersModel.add(formatUser)
         res.status(201).json(newUser)
 
 
@@ -43,7 +44,7 @@ router.post('/login', async (req, res, next) => {
             })
         }
 
-        const user = await db.findBy({ username: req.body.username })
+        const user = await usersModel.findBy({ username: req.body.username })
         if(!user) {
             return res.status(401).json(authErr)
         }
@@ -57,11 +58,16 @@ router.post('/login', async (req, res, next) => {
             userId: user.id
         }
 
+        const userEntries = await entriesModel.findByUserId(user.id)
+
         const userToken = jwt.sign(tokenPayload, process.env.JWT_SECRET)
         res.json({
             message: `welcome ${user.username}`,
+            token: userToken,
             userId: user.id,
-            token: userToken
+            name: user.name,
+            age: user.age,
+            entries: userEntries
         })
 
     } catch(err) {

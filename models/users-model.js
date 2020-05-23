@@ -14,8 +14,8 @@ function findById(id) {
 }
 
 async function add(user) {
-    // const rounds = process.env.HASHING_ROUNDS || 12
-    user.password = await bcrypt.hash(user.password, 12)
+    const rounds = process.env.HASHING_ROUNDS || 12
+    user.password = await bcrypt.hash(user.password, rounds)
     const [id] = await db('users').insert(user)
     return findById(id)
 }
