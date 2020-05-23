@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon -r dotenv/config index.js",
-    "start": "node index.js",
+    "start": "node -r dotenv/config index.js",
     "test:watch": "cross-env DB_ENV=testing jest --watch",
     "test": "cross-env DB_ENV=testing jest"
   },
