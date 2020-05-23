@@ -22,10 +22,9 @@ server.use((err, req, res, next) => {
     })
 })
 
-if(!module.parent) {
-    server.listen(port, () => {
-        console.log(`server running on port: ${port}`)
-    })
-}
+server.listen(port, () => {
+    console.log(`server running on port: ${port}`)
+})
+
 
 module.exports = server
