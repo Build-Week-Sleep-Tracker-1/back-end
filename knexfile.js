@@ -2,7 +2,7 @@
 
 module.exports = {
 
-  development: {
+  production: {
     client: 'pg',
     connection: process.env.DB_URL,
     migrations: {
@@ -17,6 +17,19 @@ module.exports = {
     }
   },
   testing: {
+    client: 'sqlite3',
+    connection: {
+      filename: './data/sleep-test.db3',
+    },
+    useNullAsDefault: true,
+    migrations: {
+      directory: './data/migrations',
+    },
+    seeds: {
+      directory: './data/seeds',
+    },
+  },
+  development: {
     client: 'sqlite3',
     connection: {
       filename: './data/sleep-test.db3',
